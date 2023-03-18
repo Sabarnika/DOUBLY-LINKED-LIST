@@ -1,0 +1,56 @@
+// You are using GCC
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *prev,*next;
+}*head=NULL;
+void create()
+{
+    struct node *newn=(struct node*)malloc(sizeof(struct node));
+    scanf("%d",&newn->data);
+    newn->next=NULL;
+    newn->prev=NULL;
+    if(head==NULL)
+    {
+        head=newn;
+    }
+    else
+    {
+        newn->next=head;
+        head->prev=newn;
+        head=newn;
+    }
+}
+void rev()
+{
+    struct node *temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->prev;
+    }
+}
+void display()
+{
+    struct node *temp;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+int main()
+{
+    for(int i=1;i<=5;i++)
+    {
+        create();
+    }
+    display();
+    rev();
+}
